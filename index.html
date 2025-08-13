@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Finance Literacy Assistant</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #007bff, #90ee90);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: rgba(0,0,0,0.65);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            max-width: 650px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .btn {
+            background: #00c851;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #007e33;
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💡 Digital Finance Literacy Assistant</h1>
+        <p>Your AI partner for UPI, Loans, Budgeting, and Fraud Safety.</p>
+        <div class="button-group">
+            <button class="btn" onclick="openChat('UPI Safety')">UPI Safety</button>
+            <button class="btn" onclick="openChat('Loan Information')">Loans & Interest</button>
+            <button class="btn" onclick="openChat('Budgeting Tips')">Budgeting Advice</button>
+            <button class="btn" onclick="openChat('Report Fraud')">Report Fraud</button>
+        </div>
+        <div class="footer">Created with IBM Watson Assistant & GitHub Pages</div>
+    </div>
+
+    <!-- Watson Assistant Embed -->
+    <script>
+        function openChat(topic) {
+            window.watsonChatInstance.openWindow();
+            setTimeout(() => {
+                window.watsonChatInstance.send({ input: { text: topic } });
+            }, 1000);
+        }
+
+        window.watsonAssistantChatOptions = {
+            integrationID: "fa37dd01-3364-44f7-be1b-cdc8360b9e24", 
+            region: "eu-gb", 
+            serviceInstanceID: "04465dc7-6fc8-4a04-9254-2f4bf51d40b4", 
+            onLoad: async (instance) => { 
+                window.watsonChatInstance = instance;
+                await instance.render();
+            }
+        };
+        setTimeout(function(){
+            const t=document.createElement('script');
+            t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + 
+                  (window.watsonAssistantChatOptions.clientVersion || 'latest') + 
+                  "/WatsonAssistantChatEntry.js";
+            document.head.appendChild(t);
+        });
+    </script>
+</body>
+</html>
